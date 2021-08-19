@@ -1,60 +1,70 @@
 package calculator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-
-    public static Integer calculate(String expression){
-        int result = 0;
-        ArrayList<String> opers = StringParser.getOpersList(expression);
-        ArrayList<Integer> values = StringParser.getValuesList(expression);
-
-         if(opers.size()!=values.size()-1){
-              System.out.println("The input string has extra operators");
-              System.exit(1);
-         }
-        while(opers.indexOf("*") != -1|| opers.indexOf("/") != -1){
-             int mulIndex = opers.indexOf("*");
-             int mulNextIndex = mulIndex + 1;
-            if(mulIndex != -1){
-              result = values.get(mulIndex) * values.get(mulNextIndex);
-              beforeNextStep(opers,values,mulIndex,mulNextIndex,result);
-            }
-            int devideIndex = opers.indexOf("/");
-            int devideNextIndex = devideIndex +  1;
-            if(devideIndex != -1){
-                try{
-                    result = values.get(devideIndex) / values.get(devideNextIndex);
-                }catch (ArithmeticException e){
-                    System.out.println("In this statement we devide on zero");
-                    System.exit(1);
-                }
-                beforeNextStep(opers,values,devideIndex,devideNextIndex,result);
-            }
+    private static ArrayList<String> opers;
+    private static ArrayList<Double> values;
+    
+    public static Double calculate(String expression) {
+        double result;
+        opers = StringParser.getOpersList(expression);
+        values = StringParser.getValuesList(expression);
+        
+        if (values.size() - 1 != opers.size()) {
+            System.out.println("The input string has extra operators");
+            System.exit(1);
         }
-        while(opers.indexOf("+") != -1|| opers.indexOf("-") != -1){
-            int plusIndex = opers.indexOf("+");
-            int plusNextIndex = plusIndex + 1;
-            if(plusIndex != -1){
-                result = values.get(plusIndex) + values.get(plusNextIndex);
-                beforeNextStep(opers,values,plusIndex,plusNextIndex,result);
-
-            }
-            int minusIndex = opers.indexOf("-");
-            int minusNextIndex = minusIndex + 1;
-            if(minusIndex != -1){
-                result = values.get(minusIndex) - values.get(minusNextIndex);
-                beforeNextStep(opers,values,minusIndex,minusNextIndex,result);
-            }
+        while (opers.contains("*") || opers.contains("/")) {
+            calculateAction("*");
+            calculateAction("/");
+        }
+        while (opers.contains("+") || opers.contains("-")) {
+            calculateAction("+");
+            calculateAction("-");
         }
         result = values.get(0);
         return result;
     }
-
-    private static void beforeNextStep(List<String> opers, List<Integer> values, int currentIndex, int nextIndex, int tempRes){
+    
+    private static void calculateAction(String action) {
+        int currentIndex = opers.indexOf(action);
+        int nextIndex = currentIndex + 1;
+        if (currentIndex == -1) {
+            return;
+        }
+        double result = 0;
+        switch (action) {
+            case "+" -> {
+                result = values.get(currentIndex) + values.get(nextIndex);
+                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+            }
+            case "-" -> {
+                result = values.get(currentIndex) - values.get(nextIndex);
+                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+            }
+            case "*" -> {
+                result = values.get(currentIndex) * values.get(nextIndex);
+                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+            }
+            case "/" -> {
+                try {
+                    result = values.get(currentIndex) / values.get(nextIndex);
+                } catch (ArithmeticException e) {
+                    System.out.println("In this statement we divide on zero");
+                    System.exit(1);
+                }
+                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+            }
+        }
+    }
+    
+    private static void beforeNextStep(List<String> opers, List<Double> values, int currentIndex, int nextIndex,
+                                       double tempRes) {
         values.remove(currentIndex);
         values.add(currentIndex, tempRes);
-        values.remove(nextIndex) ;
+        values.remove(nextIndex);
         opers.remove(currentIndex);
     }
 }

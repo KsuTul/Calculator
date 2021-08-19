@@ -1,13 +1,14 @@
 package extensions;
 
-public class InvalidInputString extends Exception{
- private String message;
-
- public InvalidInputString(String message){
-  this.message = message;
- }
+public class InvalidInputString extends Exception {
+    private String message;
+    
+    public InvalidInputString(String message) {
+        this.message = message;
+    }
+    
     @Override
-    public String toString(){
+    public String toString() {
         return message;
     }
 }
