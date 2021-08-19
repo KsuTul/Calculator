@@ -1,4 +1,4 @@
-package exstensions;
+package extensions;
 
 public class InvalidInputString extends Exception{
  private String message;

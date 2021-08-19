@@ -1,6 +1,6 @@
 package calculator;
 
-import exstensions.InvalidInputString;
+import extensions.InvalidInputString;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
