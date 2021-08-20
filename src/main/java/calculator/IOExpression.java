@@ -1,5 +1,6 @@
 package calculator;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class IOExpression {
@@ -9,7 +10,7 @@ public class IOExpression {
         return scanner.nextLine().replaceAll(" ", "");
     }
     
-    public static void OutputExpression(double result) {
+    public static void OutputExpression(BigDecimal result) {
         System.out.println(result);
     }
 }

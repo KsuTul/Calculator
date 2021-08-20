@@ -1,24 +1,36 @@
 package calculator;
 
+import extensions.InvalidInputString;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Calculator {
     private static ArrayList<String> opers;
-    private static ArrayList<Double> values;
+    private static ArrayList<BigDecimal> values;
     
-    public static Double calculate(String expression) {
-        double result;
+    public static BigDecimal calculate(String expression) {
+        BigDecimal result;
         opers = StringParser.getOpersList(expression);
         values = StringParser.getValuesList(expression);
-        
-        if (values.size() - 1 != opers.size()) {
-            System.out.println("The input string has extra operators");
+        try {
+            if (values.size() - 1 != opers.size()) {
+                throw new InvalidInputString("The input string has extra operators");
+            }
+        } catch (InvalidInputString e) {
+            System.out.println(e);
             System.exit(1);
         }
+        
+        
         while (opers.contains("*") || opers.contains("/")) {
             calculateAction("*");
-            calculateAction("/");
+            try {
+                calculateAction("/");
+            } catch (ArithmeticException e) {
+                System.out.println("In this statement we divide on zero");
+                System.exit(1);
+            }
         }
         while (opers.contains("+") || opers.contains("-")) {
             calculateAction("+");
@@ -28,41 +40,36 @@ public class Calculator {
         return result;
     }
     
-    private static void calculateAction(String action) {
+    private static void calculateAction(String action) throws ArithmeticException {
         int currentIndex = opers.indexOf(action);
         int nextIndex = currentIndex + 1;
         if (currentIndex == -1) {
             return;
         }
-        double result = 0;
+        BigDecimal result;
         switch (action) {
             case "+" -> {
-                result = values.get(currentIndex) + values.get(nextIndex);
-                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+                result = values.get(currentIndex).add(values.get(nextIndex));
+                beforeNextStep(currentIndex, result);
             }
             case "-" -> {
-                result = values.get(currentIndex) - values.get(nextIndex);
-                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+                result = values.get(currentIndex).subtract(values.get(nextIndex));
+                beforeNextStep(currentIndex, result);
             }
             case "*" -> {
-                result = values.get(currentIndex) * values.get(nextIndex);
-                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+                result = values.get(currentIndex).multiply(values.get(nextIndex));
+                beforeNextStep(currentIndex, result);
             }
             case "/" -> {
-                try {
-                    result = values.get(currentIndex) / values.get(nextIndex);
-                } catch (ArithmeticException e) {
-                    System.out.println("In this statement we divide on zero");
-                    System.exit(1);
-                }
-                beforeNextStep(opers, values, currentIndex, nextIndex, result);
+                result = values.get(currentIndex).divide(values.get(nextIndex));
+                
+                beforeNextStep(currentIndex, result);
             }
         }
     }
     
-    private static void beforeNextStep(List<String> opers, List<Double> values, int currentIndex, int nextIndex,
-                                       double tempRes) {
-        values.subList(currentIndex, nextIndex + 1).clear();
+    private static void beforeNextStep(int currentIndex, BigDecimal tempRes) {
+        values.subList(currentIndex, currentIndex + 2).clear();
         values.add(currentIndex, tempRes);
         opers.remove(currentIndex);
     }

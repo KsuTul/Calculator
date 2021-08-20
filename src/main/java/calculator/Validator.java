@@ -14,10 +14,5 @@ public class Validator {
         if (!expression.matches(expressionTemplate)) {
             throw new InvalidInputString("The input string is incorrect. Make sure you enter only nums and operators.");
         }
-        for (String i : invalidSymbols) {
-            if (expression.contains(i)) {
-                throw new InvalidInputString("The input string contains invalid symbol" + i);
-            }
-        }
     }
 }

@@ -1,6 +1,8 @@
 package calculator;
 
 import extensions.InvalidInputString;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,9 +23,9 @@ public class StringParser {
         return (ArrayList<String>) Stream.of(expression.replaceAll("[0-9.]", "").split("")).collect(Collectors.toList());
     }
     
-    public static ArrayList<Double> getValuesList(String expression) {
+    public static ArrayList<BigDecimal> getValuesList(String expression) {
         checkBeforeParse(expression);
-        return (ArrayList<Double>) Stream.of(expression.split("[*\\-+/]")).filter(s -> s != "").map(Double::parseDouble).collect(Collectors.toList());
+        return (ArrayList<BigDecimal>) Stream.of(expression.split("[*\\-+/]")).filter(s -> s != "").map(BigDecimal::new).collect(Collectors.toList());
     }
 }
 
