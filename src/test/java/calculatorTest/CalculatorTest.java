@@ -3,7 +3,7 @@ package calculatorTest;
 import calculator.Calculator;
 import calculator.StringParser;
 import calculator.Validator;
-import extensions.InvalidInputString;
+import exceptions.InvalidInputString;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

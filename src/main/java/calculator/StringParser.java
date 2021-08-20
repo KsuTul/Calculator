@@ -1,6 +1,6 @@
 package calculator;
 
-import extensions.InvalidInputString;
+import exceptions.InvalidInputString;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

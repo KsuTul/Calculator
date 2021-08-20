@@ -1,6 +1,6 @@
 package calculator;
 
-import extensions.InvalidInputString;
+import exceptions.InvalidInputString;
 
 public class Validator {
     
