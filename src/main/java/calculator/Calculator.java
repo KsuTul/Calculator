@@ -48,23 +48,22 @@ public class Calculator {
         }
         BigDecimal result;
         switch (action) {
-            case "+" -> {
+            case "+":
                 result = values.get(currentIndex).add(values.get(nextIndex));
                 beforeNextStep(currentIndex, result);
-            }
-            case "-" -> {
+                break;
+            case "-":
                 result = values.get(currentIndex).subtract(values.get(nextIndex));
                 beforeNextStep(currentIndex, result);
-            }
-            case "*" -> {
+                break;
+            case "*":
                 result = values.get(currentIndex).multiply(values.get(nextIndex));
                 beforeNextStep(currentIndex, result);
-            }
-            case "/" -> {
+                break;
+            case "/":
                 result = values.get(currentIndex).divide(values.get(nextIndex));
-                
                 beforeNextStep(currentIndex, result);
-            }
+                break;
         }
     }
     

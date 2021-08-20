@@ -60,10 +60,10 @@ public class CalculatorTest {
 		String expression = "5+28-44.5*20";
 		ArrayList<BigDecimal> expectedList = new ArrayList<>() {
 			{
-				add(new BigDecimal("5.0"));
-				add(new BigDecimal("28.0"));
+				add(new BigDecimal("5"));
+				add(new BigDecimal("28"));
 				add(new BigDecimal("44.5"));
-				add(new BigDecimal("20.0"));
+				add(new BigDecimal("20"));
 			}
 		};
 		
@@ -72,18 +72,6 @@ public class CalculatorTest {
 		Assertions.assertEquals(expectedList.size(), actualList.size());
 		Assertions.assertEquals(expectedList.get(0), actualList.get(0));
 		Assertions.assertEquals(expectedList.get(expectedList.size() - 1), actualList.get(actualList.size() - 1));
-	}
-	
-	@Test
-	public void calculateReturnExceptionIfHasExtraOpers() {
-		String expression = "-1++8";
-		String expectedErrorMessage = "The input string has extra operators";
-		
-		Throwable thrown = Assertions.assertThrows(InvalidInputString.class, () -> {
-			Calculator.calculate(expression);
-		});
-		
-		Assertions.assertEquals(expectedErrorMessage, thrown.toString());
 	}
 	
 	@Test

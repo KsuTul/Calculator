@@ -25,7 +25,7 @@ public class StringParser {
     
     public static ArrayList<BigDecimal> getValuesList(String expression) {
         checkBeforeParse(expression);
-        return (ArrayList<BigDecimal>) Stream.of(expression.split("[*\\-+/]")).filter(s -> s != "").map(BigDecimal::new).collect(Collectors.toList());
+        return (ArrayList<BigDecimal>) Stream.of(expression.split("[*\\-+/]")).filter(s -> s.intern() != "").map(BigDecimal::new).collect(Collectors.toList());
     }
 }
 
