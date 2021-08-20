@@ -3,7 +3,7 @@ package calculator;
 import exceptions.InvalidInputString;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,14 +18,14 @@ public class StringParser {
         }
     }
     
-    public static ArrayList<String> getOpersList(String expression) {
+    public static List<String> getOpersList(String expression) {
         checkBeforeParse(expression);
-        return (ArrayList<String>) Stream.of(expression.replaceAll("[0-9.]", "").split("")).collect(Collectors.toList());
+        return Stream.of(expression.replaceAll("[0-9.]", "").split("")).filter(s -> s.intern() != "").collect(Collectors.toList());
     }
     
-    public static ArrayList<BigDecimal> getValuesList(String expression) {
+    public static List<BigDecimal> getValuesList(String expression) {
         checkBeforeParse(expression);
-        return (ArrayList<BigDecimal>) Stream.of(expression.split("[*\\-+/]")).filter(s -> s.intern() != "").map(BigDecimal::new).collect(Collectors.toList());
+        return Stream.of(expression.split("[*\\-+/]")).filter(s -> s.intern() != "").map(BigDecimal::new).collect(Collectors.toList());
     }
 }
 

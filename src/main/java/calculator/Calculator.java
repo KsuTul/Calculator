@@ -3,17 +3,20 @@ package calculator;
 import exceptions.InvalidInputString;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
-    private static ArrayList<String> opers;
-    private static ArrayList<BigDecimal> values;
+    private static List<String> opers;
+    private static List<BigDecimal> values;
     
     public static BigDecimal calculate(String expression) {
         BigDecimal result;
         opers = StringParser.getOpersList(expression);
         values = StringParser.getValuesList(expression);
         try {
+            if (opers.size() == 0) {
+                return values.get(0);
+            }
             if (values.size() - 1 != opers.size()) {
                 throw new InvalidInputString("The input string has extra operators");
             }
@@ -21,7 +24,6 @@ public class Calculator {
             System.out.println(e);
             System.exit(1);
         }
-        
         
         while (opers.contains("*") || opers.contains("/")) {
             calculateAction("*");

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CalculatorTest {
 	@Test
@@ -48,7 +49,7 @@ public class CalculatorTest {
 			}
 		};
 		
-		ArrayList<String> actualList = StringParser.getOpersList(expression);
+		List<String> actualList = StringParser.getOpersList(expression);
 		
 		Assertions.assertEquals(expectedList.size(), actualList.size());
 		Assertions.assertEquals(expectedList.get(0), actualList.get(0));
@@ -58,7 +59,7 @@ public class CalculatorTest {
 	@Test
 	public void getValuesReturnValues() {
 		String expression = "5+28-44.5*20";
-		ArrayList<BigDecimal> expectedList = new ArrayList<>() {
+		List<BigDecimal> expectedList = new ArrayList<>() {
 			{
 				add(new BigDecimal("5"));
 				add(new BigDecimal("28"));
@@ -67,7 +68,7 @@ public class CalculatorTest {
 			}
 		};
 		
-		ArrayList<BigDecimal> actualList = StringParser.getValuesList(expression);
+		List<BigDecimal> actualList = StringParser.getValuesList(expression);
 		
 		Assertions.assertEquals(expectedList.size(), actualList.size());
 		Assertions.assertEquals(expectedList.get(0), actualList.get(0));
@@ -82,5 +83,27 @@ public class CalculatorTest {
 		BigDecimal actual = Calculator.calculate(expression);
 		
 		Assertions.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void calculateReturnNumIfStringConsistOnlyNums() {
+		String expression = "22222";
+		BigDecimal expected = new BigDecimal(expression);
+		
+		BigDecimal actual = Calculator.calculate(expression);
+		
+		Assertions.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void validateReturnErrorMessageIfEmptyString() {
+		String expression = "";
+		String expectedErrorMessage = "Input string is empty";
+		
+		Throwable thrown = Assertions.assertThrows(InvalidInputString.class, () -> {
+			Validator.validate(expression);
+		});
+		
+		Assertions.assertEquals(expectedErrorMessage, thrown.toString());
 	}
 }

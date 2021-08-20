@@ -8,7 +8,7 @@ public class Validator {
     private static String[] invalidSymbols = new String[]{"(", ")", ","};
     
     public static void validate(String expression) throws InvalidInputString {
-        if (expression == "") {
+        if (expression.intern() == "") {
             throw new InvalidInputString("Input string is empty");
         }
         if (!expression.matches(expressionTemplate)) {
