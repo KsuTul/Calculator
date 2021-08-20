@@ -62,9 +62,8 @@ public class Calculator {
     
     private static void beforeNextStep(List<String> opers, List<Double> values, int currentIndex, int nextIndex,
                                        double tempRes) {
-        values.remove(currentIndex);
+        values.subList(currentIndex, nextIndex + 1).clear();
         values.add(currentIndex, tempRes);
-        values.remove(nextIndex);
         opers.remove(currentIndex);
     }
 }
