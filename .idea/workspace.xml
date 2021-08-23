@@ -50,19 +50,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.CalculatorTest">
-    <configuration name="CalculatorApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="calculator.CalculatorApp" />
-      <module name="Calculator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="calculator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CalculatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Calculator" />
       <extension name="coverage">
@@ -94,7 +81,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorTest.validateReturnErrorMessageIfEmptyString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculatorTest.calculateWithMinus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
@@ -104,13 +91,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="calculatorTest" />
       <option name="MAIN_CLASS_NAME" value="calculatorTest.CalculatorTest" />
-      <option name="METHOD_NAME" value="validateReturnErrorMessageIfEmptyString" />
+      <option name="METHOD_NAME" value="calculateWithMinus" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorTest.validateReturnMessageIfStringHasInvalidSymbols" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CalculatorTest.validateReturnErrorMessageIfExtraOpers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Calculator" />
       <extension name="coverage">
         <pattern>
@@ -120,7 +107,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="calculatorTest" />
       <option name="MAIN_CLASS_NAME" value="calculatorTest.CalculatorTest" />
-      <option name="METHOD_NAME" value="validateReturnMessageIfStringHasInvalidSymbols" />
+      <option name="METHOD_NAME" value="validateReturnErrorMessageIfExtraOpers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CalculatorTest.validateReturnMessageIfEmptyString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Calculator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="calculatorTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="calculatorTest" />
+      <option name="MAIN_CLASS_NAME" value="calculatorTest.CalculatorTest" />
+      <option name="METHOD_NAME" value="validateReturnMessageIfEmptyString" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -130,9 +133,9 @@
       <list>
         <item itemvalue="JUnit.CalculatorTest" />
         <item itemvalue="JUnit.CalculatorTest.calculateReturnNumIfStringConsistOnlyNums" />
-        <item itemvalue="JUnit.CalculatorTest.validateReturnErrorMessageIfEmptyString" />
-        <item itemvalue="Application.CalculatorApp" />
-        <item itemvalue="JUnit.CalculatorTest.validateReturnMessageIfStringHasInvalidSymbols" />
+        <item itemvalue="JUnit.CalculatorTest.validateReturnMessageIfEmptyString" />
+        <item itemvalue="JUnit.CalculatorTest.calculateWithMinus" />
+        <item itemvalue="JUnit.CalculatorTest.validateReturnErrorMessageIfExtraOpers" />
       </list>
     </recent_temporary>
   </component>
@@ -147,7 +150,7 @@
       <workItem from="1629312129282" duration="5889000" />
       <workItem from="1629354646720" duration="4790000" />
       <workItem from="1629371364252" duration="22464000" />
-      <workItem from="1629434122462" duration="15945000" />
+      <workItem from="1629434122462" duration="38688000" />
     </task>
     <servers />
   </component>
@@ -170,11 +173,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/calculatorTest/CalculatorTest.java</url>
           <line>13</line>
           <option name="timeStamp" value="11" />
@@ -185,24 +183,34 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/calculator/StringParser.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/calculator/Validator.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/calculator/CalculatorApp.java</url>
-          <line>5</line>
+          <line>7</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/target/test-classes/calculatorTest/CalculatorTest.class</url>
           <line>1</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/CalculatorApp.java</url>
+          <line>5</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/StringParser.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/calculatorTest/CalculatorTest.java</url>

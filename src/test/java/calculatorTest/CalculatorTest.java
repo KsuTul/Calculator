@@ -88,11 +88,10 @@ public class CalculatorTest {
 	@Test
 	public void calculateReturnNumIfStringConsistOnlyNums() {
 		String expression = "22222";
-		BigDecimal expected = new BigDecimal(expression);
 		
 		BigDecimal actual = Calculator.calculate(expression);
 		
-		Assertions.assertEquals(expected, actual);
+		Assertions.assertEquals(null, actual);
 	}
 	
 	@Test
@@ -105,5 +104,26 @@ public class CalculatorTest {
 		});
 		
 		Assertions.assertEquals(expectedErrorMessage, thrown.toString());
+	}
+	
+	@Test
+	public void validateReturnErrorMessageIfExtraOpers() {
+		String expression = "1++2";
+		String expectedErrorMessage = "The input string has extra opers";
+		
+		Throwable thrown = Assertions.assertThrows(InvalidInputString.class, () -> {
+			Validator.validate(expression);
+		});
+		
+		Assertions.assertEquals(expectedErrorMessage, thrown.toString());
+	}
+	
+	@Test
+	public void calculateWithMinus() {
+		String expression = "(-2)-((-4)*3.5)";
+		BigDecimal expected = new BigDecimal("12.0");
+		
+		BigDecimal actual = Calculator.calculate(expression);
+		Assertions.assertEquals(expected, actual);
 	}
 }

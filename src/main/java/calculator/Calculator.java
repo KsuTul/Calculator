@@ -1,28 +1,40 @@
 package calculator;
 
-import exceptions.InvalidInputString;
-
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Calculator {
     private static List<String> opers;
     private static List<BigDecimal> values;
     
     public static BigDecimal calculate(String expression) {
+        BigDecimal result = null;
+        StringBuilder str = new StringBuilder(StringParser.addMultSignBeforeOpenBracket(expression));
+        Pattern pattern = Pattern.compile("[\\*|\\+|\\-|\\/|\\(|\\)]");
+        Matcher matcher = pattern.matcher(str.toString());
+        while (matcher.find()) {
+            BracketsPosition brPos = getDeepestBrackets(str.toString());
+            if (brPos.closeBrackets == 0) {
+                result = calculateExpression(str.toString());
+                break;
+            } else {
+                str.replace(brPos.openBrackets, brPos.closeBrackets + 1,
+                        calculateExpression(str.substring(brPos.openBrackets + 1, brPos.closeBrackets)).toString());
+            }
+        }
+        return result;
+    }
+    
+    private static BigDecimal calculateExpression(String expression) {
         BigDecimal result;
         opers = StringParser.getOpersList(expression);
         values = StringParser.getValuesList(expression);
-        try {
-            if (opers.size() == 0) {
-                return values.get(0);
-            }
-            if (values.size() - 1 != opers.size()) {
-                throw new InvalidInputString("The input string has extra operators");
-            }
-        } catch (InvalidInputString e) {
-            System.out.println(e);
-            System.exit(1);
+        
+        if (opers.size() == 0 && values.size() > 0) {
+            return values.get(0);
         }
         
         while (opers.contains("*") || opers.contains("/")) {
@@ -74,4 +86,42 @@ public class Calculator {
         values.add(currentIndex, tempRes);
         opers.remove(currentIndex);
     }
+    
+    private static BracketsPosition getDeepestBrackets(String expression) {
+        var deepestOpenPos = 0;
+        var deepestClosePos = 0;
+        var currentDepth = 0;
+        var maxDepth = 0;
+        var closed = true;
+        for (int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '(') {
+                currentDepth++;
+                if (currentDepth > maxDepth) {
+                    deepestOpenPos = i;
+                    maxDepth = currentDepth;
+                    closed = false;
+                }
+            }
+            if (expression.charAt(i) == ')') {
+                if (!closed) {
+                    deepestClosePos = i;
+                    closed = true;
+                }
+                currentDepth--;
+            }
+        }
+        
+        return new BracketsPosition(deepestOpenPos, deepestClosePos);
+    }
+    
+    private static class BracketsPosition {
+        public int openBrackets;
+        public int closeBrackets;
+    
+        public BracketsPosition(int openBrackets, int closeBrackets) {
+            this.openBrackets = openBrackets;
+            this.closeBrackets = closeBrackets;
+        }
+    }
+    
 }
