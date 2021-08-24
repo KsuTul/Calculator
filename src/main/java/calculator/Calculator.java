@@ -3,6 +3,7 @@ package calculator;
 import exceptions.InvalidInputString;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -11,31 +12,27 @@ public class Calculator {
     private static List<String> opers;
     private static List<BigDecimal> values;
     
-    public static BigDecimal calculate(String expression) {
-        checkBeforeCalculate(expression);
-        BigDecimal result = null;
+    public static String calculate(String expression) {
+        try {
+            Validator.validate(expression);
+        } catch (InvalidInputString ex) {
+            System.out.println(ex);
+            return "";
+        }
+        BigDecimal result;
         StringBuilder str = new StringBuilder(StringParser.addMultSignBeforeOpenBracket(expression));
         Pattern pattern = Pattern.compile("[\\*|\\+|\\-|\\/|\\(|\\)]");
         while (pattern.matcher(str.toString()).find()) {
             BracketsPosition brPos = getDeepestBrackets(str.toString());
             if (brPos.closeBrackets == 0) {
                 result = calculateExpression(str.toString());
-                return result;
+                return result == null ? "" : result.toString();
             } else {
                 str.replace(brPos.openBrackets, brPos.closeBrackets + 1,
                         calculateExpression(str.substring(brPos.openBrackets + 1, brPos.closeBrackets)).toString());
             }
         }
-        return new BigDecimal(str.toString());
-    }
-    
-    private static void checkBeforeCalculate(String expression) {
-        try {
-            Validator.validate(expression);
-        } catch (InvalidInputString ex) {
-            System.out.println(ex);
-            System.exit(1);
-        }
+        return str.toString();
     }
     
     private static BigDecimal calculateExpression(String expression) {
@@ -49,19 +46,16 @@ public class Calculator {
         
         while (opers.contains("*") || opers.contains("/")) {
             calculateAction("*");
-            try {
-                calculateAction("/");
-            } catch (ArithmeticException e) {
-                System.out.println("In this statement we divide on zero");
-                System.exit(1);
-            }
+            calculateAction("/");
         }
         while (opers.contains("+") || opers.contains("-")) {
             calculateAction("+");
             calculateAction("-");
         }
-        result = values.get(0);
-        return result;
+        if (values.size() == 0) {
+            return null;
+        }
+        return values.get(0);
     }
     
     private static void calculateAction(String action) throws ArithmeticException {
@@ -70,7 +64,7 @@ public class Calculator {
         if (currentIndex == -1) {
             return;
         }
-        BigDecimal result;
+        BigDecimal result = null;
         switch (action) {
             case "+":
                 result = values.get(currentIndex).add(values.get(nextIndex));
@@ -85,7 +79,14 @@ public class Calculator {
                 beforeNextStep(currentIndex, result);
                 break;
             case "/":
-                result = values.get(currentIndex).divide(values.get(nextIndex));
+                try {
+                    result = values.get(currentIndex).divide(values.get(nextIndex), RoundingMode.HALF_UP);
+                } catch (ArithmeticException e) {
+                    System.out.println("In this statement we divide on zero");
+                    opers.clear();
+                    values.clear();
+                    return;
+                }
                 beforeNextStep(currentIndex, result);
                 break;
         }

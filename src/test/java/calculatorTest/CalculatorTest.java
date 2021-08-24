@@ -78,9 +78,9 @@ public class CalculatorTest {
 	@Test
 	public void calculateReturnCorrectResult() {
 		String expression = "4.2+2*3/3-6.1";
-		BigDecimal expected = new BigDecimal("0.1");
+		String expected = "0.1";
 		
-		BigDecimal actual = Calculator.calculate(expression);
+		String actual = Calculator.calculate(expression);
 		
 		Assertions.assertEquals(expected, actual);
 	}
@@ -88,9 +88,9 @@ public class CalculatorTest {
 	@Test
 	public void calculateReturnNumIfStringConsistOnlyNums() {
 		String expression = "22222";
-		BigDecimal expected = new BigDecimal("22222");
+		String expected = "22222";
 		
-		BigDecimal actual = Calculator.calculate(expression);
+		String actual = Calculator.calculate(expression);
 		
 		Assertions.assertEquals(expected, actual);
 	}
@@ -122,9 +122,9 @@ public class CalculatorTest {
 	@Test
 	public void calculateWithMinus() {
 		String expression = "(-2)-((-4)*3.5)";
-		BigDecimal expected = new BigDecimal("12.0");
+		String expected = "12.0";
 		
-		BigDecimal actual = Calculator.calculate(expression);
+		String actual = Calculator.calculate(expression);
 		Assertions.assertEquals(expected, actual);
 	}
 }

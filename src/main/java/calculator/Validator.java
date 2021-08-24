@@ -14,7 +14,8 @@ public class Validator {
             throw new InvalidInputString("Input string is empty");
         }
         if (!expression.matches(expressionTemplate)) {
-            throw new InvalidInputString("The input string is incorrect. Make sure you enter only nums and operators or your first symbol not num/minus/brackets");
+            throw new InvalidInputString("The input string is incorrect. Make sure you enter only nums and operators " +
+                    "or your first symbol not num/minus/brackets");
         }
         
         Pattern pattern = Pattern.compile("\\*{2}|\\+{2}|\\/{2}");
