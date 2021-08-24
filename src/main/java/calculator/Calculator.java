@@ -1,8 +1,9 @@
 package calculator;
 
+import exceptions.InvalidInputString;
+
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -11,21 +12,30 @@ public class Calculator {
     private static List<BigDecimal> values;
     
     public static BigDecimal calculate(String expression) {
+        checkBeforeCalculate(expression);
         BigDecimal result = null;
         StringBuilder str = new StringBuilder(StringParser.addMultSignBeforeOpenBracket(expression));
         Pattern pattern = Pattern.compile("[\\*|\\+|\\-|\\/|\\(|\\)]");
-        Matcher matcher = pattern.matcher(str.toString());
-        while (matcher.find()) {
+        while (pattern.matcher(str.toString()).find()) {
             BracketsPosition brPos = getDeepestBrackets(str.toString());
             if (brPos.closeBrackets == 0) {
                 result = calculateExpression(str.toString());
-                break;
+                return result;
             } else {
                 str.replace(brPos.openBrackets, brPos.closeBrackets + 1,
                         calculateExpression(str.substring(brPos.openBrackets + 1, brPos.closeBrackets)).toString());
             }
         }
-        return result;
+        return new BigDecimal(str.toString());
+    }
+    
+    private static void checkBeforeCalculate(String expression) {
+        try {
+            Validator.validate(expression);
+        } catch (InvalidInputString ex) {
+            System.out.println(ex);
+            System.exit(1);
+        }
     }
     
     private static BigDecimal calculateExpression(String expression) {

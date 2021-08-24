@@ -7,7 +7,11 @@ public class IOExpression {
     public static String InputExpression() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Put expression");
-        return scanner.nextLine().replaceAll(" ", "");
+        var d = scanner.nextLine().replaceAll(" ", "");
+        if(d.equalsIgnoreCase("quite") || d.equalsIgnoreCase("exit")){
+            System.exit(1);
+        }
+        return d;
     }
     
     public static void OutputExpression(BigDecimal result) {

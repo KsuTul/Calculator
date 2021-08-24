@@ -27,7 +27,7 @@ public class CalculatorTest {
 	@Test
 	public void validateReturnMessageIfStringHasInvalidSymbols() {
 		String expression = "1sg+(3,4+4)";
-		String expectedErrorMessage = "The input string is incorrect. Make sure you enter only nums and operators.";
+		String expectedErrorMessage = "The input string is incorrect. Make sure you enter only nums and operators or your first symbol not num/minus/brackets";
 		
 		Throwable thrown = Assertions.assertThrows(InvalidInputString.class, () -> {
 			Validator.validate(expression);
@@ -88,10 +88,11 @@ public class CalculatorTest {
 	@Test
 	public void calculateReturnNumIfStringConsistOnlyNums() {
 		String expression = "22222";
+		BigDecimal expected = new BigDecimal("22222");
 		
 		BigDecimal actual = Calculator.calculate(expression);
 		
-		Assertions.assertEquals(null, actual);
+		Assertions.assertEquals(expected, actual);
 	}
 	
 	@Test

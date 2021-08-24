@@ -10,14 +10,6 @@ import java.util.stream.Stream;
 
 
 public class StringParser {
-    private static void checkBeforeParse(String expression) {
-        try {
-            Validator.validate(expression);
-        } catch (InvalidInputString ex) {
-            System.out.println(ex);
-            System.exit(1);
-        }
-    }
     
     public static String addMultSignBeforeOpenBracket(String expression) {
         StringBuilder str = new StringBuilder(expression);
@@ -45,13 +37,11 @@ public class StringParser {
     }
     
     public static List<String> getOpersList(String expression) {
-        checkBeforeParse(expression);
         var exp = getNewExpression(expression);
         return Stream.of(exp.replaceAll("[0-9.-]", "").split("")).filter(s -> s.intern() != "").collect(Collectors.toList());
     }
     
     public static List<BigDecimal> getValuesList(String expression) {
-        checkBeforeParse(expression);
         var exp = getNewExpression(expression);
         return Stream.of(getNewExpression(expression).split("[*|\\|+|/|()]")).filter(s -> s.intern() != "").map(BigDecimal::new).collect(Collectors.toList());
     }
