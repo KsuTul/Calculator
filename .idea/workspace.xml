@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ec7996f-53de-4f37-bcd4-51034681785c" name="Changes" comment="" />
+    <list default="true" id="7ec7996f-53de-4f37-bcd4-51034681785c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/Calculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/CalculatorApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/CalculatorApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/IOExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/IOExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/StringParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/StringParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/calculator/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculator/Validator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/calculatorTest/CalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/calculatorTest/CalculatorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/calculator/Calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/calculator/Calculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/calculatorTest/CalculatorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/calculatorTest/CalculatorTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +49,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -148,7 +159,10 @@
       <workItem from="1629312129282" duration="5889000" />
       <workItem from="1629354646720" duration="4790000" />
       <workItem from="1629371364252" duration="22464000" />
-      <workItem from="1629434122462" duration="52564000" />
+      <workItem from="1629434122462" duration="53237000" />
+      <workItem from="1629916055297" duration="1420000" />
+      <workItem from="1629919032279" duration="1870000" />
+      <workItem from="1630250368031" duration="5172000" />
     </task>
     <servers />
   </component>
@@ -187,12 +201,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
-          <line>21</line>
+          <line>18</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
-          <line>39</line>
+          <line>36</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -207,13 +221,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/calculator/Validator.java</url>
-          <line>12</line>
+          <line>13</line>
           <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/calculator/CalculatorApp.java</url>
-          <line>4</line>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/calculator/IOExpression.java</url>
@@ -222,17 +231,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
-          <line>47</line>
+          <line>44</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/calculator/Calculator.java</url>
-          <line>82</line>
+          <line>79</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">

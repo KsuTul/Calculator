@@ -36,12 +36,11 @@ public class StringParser {
     
     public static List<String> getOpersList(String expression) {
         var exp = getNewExpression(expression);
-        return Stream.of(exp.replaceAll("[0-9.-]", "").split("")).filter(s -> s.intern() != "").collect(Collectors.toList());
+        return Stream.of(exp.replaceAll("[0-9.-]", "").split("")).filter(s -> !s.intern().equals("")).collect(Collectors.toList());
     }
     
     public static List<BigDecimal> getValuesList(String expression) {
-        var exp = getNewExpression(expression);
-        return Stream.of(getNewExpression(expression).split("[*|\\|+|/|()]")).filter(s -> s.intern() != "").map(BigDecimal::new).collect(Collectors.toList());
+        return Stream.of(getNewExpression(expression).split("[*|+/()]")).filter(s -> !s.intern().equals("")).map(BigDecimal::new).collect(Collectors.toList());
     }
 }
 
